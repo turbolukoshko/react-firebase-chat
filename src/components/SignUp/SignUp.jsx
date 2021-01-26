@@ -22,14 +22,6 @@ const SignUp = () => {
     } 
   }
 
-  const signUpWithGoogleHandler = async() => {
-    try {
-      await signWithGoogle(email, password);
-    } catch(e) {
-      setError(e.message);
-    } 
-  }
-
   return(
     <div className="sign-up">
       <form 
