@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signIn } from '../../helpers/auth';
+import { signIn, signWithGoogle } from '../../helpers/auth';
 import { SIGN_UP_ROUTE } from '../../routes';
 import './Login.scss';
 
@@ -20,6 +20,15 @@ const Login = () => {
     } catch(e) {
       setError(e.message);
     }    
+  }
+
+  const signUpWithGoogleHandler = async(e) => {
+    e.preventDefault();
+    try {
+      await signWithGoogle(email, password);
+    } catch(e) {
+      setError(e.message);
+    } 
   }
 
   return(
@@ -53,6 +62,12 @@ const Login = () => {
         {error && <p className="login__error">{error}</p>}
         <div className="login__button-wrapper">
           <button className="login__btn">Sign In</button>
+          <button 
+          onClick={signUpWithGoogleHandler}
+          className="login__btn login__google-btn"
+        >
+        <img src="/images/google.png" alt="google" className="google-icon"/> Sign in with Google
+        </button>
         </div>
         <p className="login__sign-up">Don't have an account? <Link to={SIGN_UP_ROUTE} className="login__sign-up-link">Sign Up</Link></p>
       </form>
