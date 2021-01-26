@@ -1,24 +1,39 @@
 .home__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   margin-bottom: -50px;
-  padding-bottom: 300px;
   color: #ffffff;
   background: #000000;
-  text-align: center;
 }
 
 .home {
-  width: 100%;
-  height: 200px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  text-align: center;
+  .home__title {
+    font-size: 60px;
+    .home__title-chat {
+      padding: 5px;
+      color: #000000;
+      background: #ffffff;
+    }
+  }
+
+  .home__description {
+    font-size: 20px;
+  }
+
   .home__title,
   .home__description {
-    padding-bottom: 50px;
+    margin-bottom: 50px;
   }
 
   .home__link {
+    display: block;
+    width: 140px;
+    height: 60px;
+    margin: 0 auto;
     padding: 20px 40px;
     color: #ffffff;
     background: red;

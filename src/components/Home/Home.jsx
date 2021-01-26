@@ -8,7 +8,7 @@ const Home = () => {
     <>
     <div className="home__wrapper">
       <div className="home">
-        <h1 className="home__title">Welcome to chat</h1>
+        <h1 className="home__title">Welcome to <b className="home__title-chat">chat</b></h1>
         <p className="home__description">If you are ready then let's get started</p>
         <Link className="home__link" to={LOGIN_ROUTE}>Let's go</Link>
       </div>
