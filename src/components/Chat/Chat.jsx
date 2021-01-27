@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '../../services/firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import Loader from '../Loader/Loader';
 
 const Chat = () => {
 
@@ -24,7 +25,7 @@ const Chat = () => {
   }
 
   if(loading) {
-    return <h1>Loading ...</h1>
+    return <Loader />;
   }
 
   return(
