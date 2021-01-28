@@ -8,7 +8,6 @@ import { validation } from '../../helpers/validation';
 import './Chat.scss';
 
 const Chat = () => {
-
   
   const [value, setValue] = useState('');
   const [user] = useAuthState(auth());
@@ -31,12 +30,9 @@ const Chat = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
-    
     setValue('');
     setError('');
   }
-
-  console.log(user.email );
   
   if(loading) {
     return <Loader />;

@@ -52,6 +52,7 @@
 
 .chat__area-container {
   height: 80vh;
+  margin: 20px 0;
   overflow: hidden;
 }
 
@@ -60,7 +61,7 @@
   flex-direction: column;
   max-width: 1440px;
   height: inherit;
-  margin: 10px auto;
+  margin: 0 auto;
   padding: 0 10px;
   overflow: auto;
   .chat__area-block--right {
@@ -81,10 +82,11 @@
 
 .chat__area-block__content-message {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   .chat__area-block__content-message__username {
-    font-size: 14px;
     margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
   }
   .chat__area-block__content-message-message {
     font-size: 14px;
@@ -109,6 +111,7 @@
   display: flex;
   justify-content: center;
   max-width: 1440px;
+  margin: 0 auto;
   padding: 0 10px;
   .chat__new-message-input {
     width: 80%;
