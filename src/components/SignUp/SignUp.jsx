@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signUp, signWithGoogle } from '../../helpers/auth';
+import { signUp } from '../../helpers/auth';
 import { LOGIN_ROUTE } from '../../routes';
 import './SignUp.scss';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CHAT_ROUTE, LOGIN_ROUTE } from '../../routes';
+import { LOGIN_ROUTE } from '../../routes';
 import './Home.scss';
 
 const Home = () => {
