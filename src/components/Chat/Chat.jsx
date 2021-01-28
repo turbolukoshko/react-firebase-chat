@@ -4,15 +4,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '../../services/firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import Loader from '../Loader/Loader';
+import { validation } from '../../helpers/validation';
 import './Chat.scss';
 
 const Chat = () => {
 
+  
   const [value, setValue] = useState('');
   const [user] = useAuthState(auth());
-  const [messages, loading] = useCollectionData(firestore.collection('messages').orderBy('createdAt'))
-
+  const [messages, loading] = useCollectionData(firestore.collection('messages').orderBy('createdAt'));
+  const [error, setError] = useState(null);
+  
   const sendMessage = async() => {
+    
+    if(!validation(value)) {
+      setError('Message cannot be empty');
+      return;
+    }
+    
     firestore.collection('messages').add({
       uid: user.uid,
       displayName: user.displayName,
@@ -22,9 +31,13 @@ const Chat = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
+    
     setValue('');
+    setError('');
   }
 
+  console.log(user.email );
+  
   if(loading) {
     return <Loader />;
   }
@@ -39,7 +52,7 @@ const Chat = () => {
             className="chat__navigation-avatar"
           />
           <p className="chat__navigation-username">
-            {user.email ? user.email : user.displayName}
+            {user.displayName ? user.displayName : user.email}
           </p>
           <button 
             onClick={() => auth().signOut() }
@@ -49,27 +62,27 @@ const Chat = () => {
           </button>
         </div>
       </nav>
-      <div className="chat__field">
-        <div className="chat__field-messages">
+      <div className="chat__area-container">
+        <div className="chat__area">
           {messages.map(message => {
             return(
               <div
                 key={message.createdAt}
-                className={message.displayName || message.email ===  (user.email || user.displayName) ? 'message-wrapper right' : 'message-wrapper"'}
+                className={message.uid === user.uid ? 'chat__area-block--right' : 'chat__area-block'}
               >
                 <div
-                  className="chat__field-message"
+                  className="chat__area-block__content"
                 >
                   <img 
                     src={message.photoURL ? message.photoURL : '/images/user.png'} alt={message.photoURL}
                     alt="avatar"
-                    className="chat__field-avatar"
+                    className="chat__area-block__content-avatar"
                   />
-                  <div className="chat__field-content">
-                    <p className="chat__field-content-username">
-                      {message.displayName ? message.displayName : message.email}
+                  <div className="chat__area-block__content-message">
+                    <p className="chat__area-block__content-message__username">
+                      {message.displayName ? message.displayName : message.email || 'Anonymous User'}
                     </p>
-                    <p className="chat__field-content-message" >{message.text}</p>
+                    <p className="chat__area-block__content-message-message" >{message.text}</p>
                   </div>
                 </div>
               </div>
@@ -77,14 +90,27 @@ const Chat = () => {
           })}
         </div>
       </div>
-      <div>
-        <input
-          type="text"
-          onChange={e => setValue(e.target.value)}
-          value={value}
-          placeholder="Enter your message"  
-        />
-        <button onClick={sendMessage}>Send</button>
+      <div className="chat__container-new-message">
+        <div className="chat__new-message">
+          <input
+            type="text"
+            onChange={e => setValue(e.target.value)}
+            value={value}
+            placeholder="Write something"
+            className="chat__new-message-input"  
+          />
+          <button 
+            onClick={sendMessage}
+            className="chat__new-message-btn"  
+          >
+            <img 
+              src="/images/send.png" 
+              alt="send button" 
+              className="chat__new-message-btn-img"
+            />
+          </button>
+        </div>
+        <div className="chat__new-message-error">{error && <p>{error}</p>}</div>
       </div>
     </div>
   );
