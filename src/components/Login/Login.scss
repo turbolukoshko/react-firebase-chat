@@ -1,10 +1,11 @@
 .login { 
   height: 100vh;
+  padding: 0 10px;
 }
 
 .login__form {
   width: 500px;
-  padding: 50px;
+  padding: 10px;
   position: absolute;
   top: 35%;
   left: 50%;
@@ -81,5 +82,53 @@
     color: red;
     font-size: 14px;
     text-align: center;
+  }
+}
+
+// Media queries for the Ipad Pro
+@media only screen and (max-width: 1024px) and (max-height: 1366px) {
+  .login__form {
+    top: 45%;
+  }
+}
+
+// Media queries for the IPad
+@media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .login__form {
+    top: 40%;
+  }
+}
+
+// Media queries for the Surface Duo
+@media only screen and (max-width: 540px) and (max-height: 720px) {
+  .login__form {
+    top: 45%;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .login__form {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 428px) {
+  .login__form {
+    width: 350px;
+    .login__button-wrapper {
+      flex-direction: column;
+      align-items: center;
+      .login__btn {
+        width: 160px;
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .login__form {
+    width: 300px;
   }
 }

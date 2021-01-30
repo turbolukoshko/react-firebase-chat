@@ -39,6 +39,7 @@
     .chat__navigation-btn {
       width: 80px;
       height: 30px;
+      margin-left: auto;
       border: 1px solid #000000;
       background: transparent;
       &:hover {
@@ -139,4 +140,25 @@
     color: red;
     font-size: 14px;
     text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+  .chat__area {
+    .chat__area-block__content {
+      width: auto;
+      word-break: break-all;
+    }
+  } 
+}
+
+@media screen and (max-width: 375px) {
+  .chat__area-container {
+    height: 77vh;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .chat__area-container {
+    height: 75vh;
+  }
 }

@@ -9,11 +9,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
   min-height: 300px;
   position: absolute;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -25%);
+  padding: 0 10px;
   text-align: center;
   .home__title {
     font-size: 60px;
@@ -62,5 +64,12 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+@media only screen and (max-width: 428px) {
+  .home {
+    top: 30%;
+    transform: translate(-50%, -30%);
   }
 }
