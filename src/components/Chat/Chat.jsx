@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '../../services/firebase';
@@ -14,18 +14,6 @@ const Chat = () => {
   const [messages, loading] = useCollectionData(firestore.collection('messages').orderBy('createdAt'));
   const [error, setError] = useState(null);
 
-  const endChat = useRef();
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const scrollToBottom = () => {
-    if(endChat.current) {
-      endChat.current.scrollIntoView();
-    }
-  };
-  
   const sendMessage = async() => {
     
     if(!validation(value)) {
@@ -96,7 +84,6 @@ const Chat = () => {
               </div>
             )
           })}
-          <div ref={endChat}></div>
         </div>
       </div>
       <div className="chat__container-new-message">
