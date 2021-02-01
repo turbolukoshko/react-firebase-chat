@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './App.css';
 import Chat from './components/Chat/Chat';
